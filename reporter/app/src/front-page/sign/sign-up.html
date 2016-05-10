@@ -1,0 +1,26 @@
+<div class="modal-body">
+    <form class="login-form">
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_profile"></i></span>
+                <input ng-model="name" type="text" class="form-control" placeholder="Username" autofocus>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_mail"></i></span>
+                <input ng-model="email" type="text" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input ng-model="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <label class="checkbox">
+                <input ng-model="remember" type="checkbox"> Remember me
+                <!--<span class="pull-right"> <a href="#">Forgot Password?</a></span>-->
+            </label>
+            <button class="btn btn-info btn-lg btn-block" type="submit"
+                    ng-click="vm.signUp(name, password, email, remember)">Sign up
+            </button>
+        </div>
+    </form>
+</div>

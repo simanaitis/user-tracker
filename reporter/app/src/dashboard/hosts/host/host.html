@@ -1,0 +1,31 @@
+<div style="position: relative; max-width: 800px; margin: auto;">
+    <canvas id="line" class="chart chart-line" chart-data="vm.data"
+            chart-labels="vm.labels" chart-legend="true" chart-series="vm.series"
+            chart-click="vm.onClick">
+    </canvas>
+</div>
+
+<button class="btn btn-primary" ng-click="vm.openAddNewScenarioModal()">
+    Add new scenario <span class="glyphicon glyphicon-plus-sign"></span>
+</button>
+
+<uib-accordion is-disabled="true">
+    <uib-accordion-group ng-repeat="scenario in vm.scenarios" is-open="true"
+                         panel-class="{{scenario.status === 'active' && 'panel-primary'}}">
+        <uib-accordion-heading>
+            <span>
+                <i class="glyphicon" ng-class="[isopen ? 'glyphicon-chevron-down': 'glyphicon-chevron-right']"></i>
+                {{scenario.name}}
+            </span>
+            <span class="pull-right">
+
+                <i class="glyphicon glyphicon-trash"  ng-click="vm.deleteScenario(scenario.id)"></i>
+                <i class="glyphicon" ng-class="[scenario.status ? 'glyphicon-check' : 'glyphicon-unchecked']" ng-click="vm.toggleStatus(scenario)"></i>
+                <i class="glyphicon glyphicon-eye-open" ui-sref="dashboard.scenario({hostId: vm.hostId, scenarioId: scenario.id})"></i>
+            </span>
+        </uib-accordion-heading>
+        <form class="form-horizontal" ng-submit="vm.onHostSubmit()">
+            <ux-scenario-edit scenario="scenario"></ux-scenario-edit>
+        </form>
+    </uib-accordion-group>
+</uib-accordion>

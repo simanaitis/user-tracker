@@ -1,0 +1,61 @@
+{
+  "name": "Event",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "time": {
+      "type": "string",
+      "required": true
+    },
+    "domainId": {
+      "type": "string",
+      "required": false
+    },
+    "position": {
+      "type": "string",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "relativePath": {
+      "type": "string",
+      "required": false
+    },
+    "screenDimensions": {
+      "type": "string",
+      "required": false
+    },
+    "selector": {
+      "type": "string",
+      "required": false
+    },
+    "type": {
+      "type": "string",
+      "required": false
+    },
+    "trackedUser": {
+      "type": "string",
+      "required": false
+    },
+    "windowDimensions": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

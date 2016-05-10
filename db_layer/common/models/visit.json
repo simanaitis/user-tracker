@@ -1,0 +1,35 @@
+{
+  "name": "Visit",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "startTime": {
+      "type": "date",
+      "required": true
+    },
+    "events": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "date",
+      "required": false
+    },
+    "DomainId": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "event": {
+      "type": "referencesMany",
+      "model": "EventArray",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

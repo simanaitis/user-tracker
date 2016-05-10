@@ -1,0 +1,39 @@
+{
+  "name": "Domain",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "host": {
+      "type": "string",
+      "required": true
+    },
+    "scenarioIds": {
+      "type": [
+        "string"
+      ],
+      "required": false
+    },
+    "ownerId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "scenario": {
+      "type": "referencesMany",
+      "model": "Scenario",
+      "foreignKey": ""
+    },
+    "tracked_user": {
+      "type": "referencesMany",
+      "model": "TrackedUser",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

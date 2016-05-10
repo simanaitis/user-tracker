@@ -1,0 +1,50 @@
+{
+  "name": "Event",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "selector": {
+      "type": "string",
+      "required": false
+    },
+    "time": {
+      "type": "string",
+      "required": true
+    },
+    "relativePath": {
+      "type": "string",
+      "required": false
+    },
+    "screenDimensions": {
+      "type": "string",
+      "required": true
+    },
+    "screenHeight": {
+      "type": "number",
+      "required": true
+    },
+    "documentWidth": {
+      "type": "number",
+      "required": true
+    },
+    "documentHeight": {
+      "type": "number",
+      "required": true
+    },
+    "position": {
+      "type": "string",
+      "required": false
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

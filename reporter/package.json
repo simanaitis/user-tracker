@@ -1,0 +1,72 @@
+{
+  "name": "Reporter",
+  "version": "0.0.0",
+  "description": "DataReporter\r ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simanaitis/user-tracker.git"
+  },
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "del": "^2.2.0",
+    "express": "3.x",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-bower": "0.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^3.0.1",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-if": "^2.0.0",
+    "gulp-image-optimization": "^0.1.3",
+    "gulp-inject": "^3.0.0",
+    "gulp-karma": "0.0.5",
+    "gulp-less": "^3.0.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.4",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-cli": "^0.1.2",
+    "phantom": "^2.0.9",
+    "run-sequence": "^1.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0",
+    "yargs": "^4.1.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simanaitis/user-tracker/issues"
+  },
+  "homepage": "https://github.com/simanaitis/user-tracker",
+  "devDependencies": {
+    "angular-ui-bootstrap": "*",
+    "bash-color": "*",
+    "frisby": "^0.8.0",
+    "grunt": "^0.4.4",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-concat": "^0.3.0",
+    "grunt-contrib-jasmine": "^0.6.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.13",
+    "grunt-jasmine-node": "^0.2.1",
+    "grunt-remove-logging": "^0.2.0",
+    "jade": "^1.3.1",
+    "karma-browserify": "^5.0.4",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "nock": "^0.28.3",
+    "request": "^2.34.0",
+    "underscore": "^1.6.0",
+    "webshot": "^0.18.0"
+  }
+}

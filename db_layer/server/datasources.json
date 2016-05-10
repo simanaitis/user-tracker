@@ -1,0 +1,11 @@
+{
+  "db": {
+    "host": "ds055875.mongolab.com",
+    "port": 55875,
+    "database": "uxtracker",
+    "password": "vilkas123",
+    "name": "db",
+    "user": "uxtracker",
+    "connector": "mongodb"
+  }
+}

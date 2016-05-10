@@ -1,0 +1,134 @@
+<style>
+    .thumbnail {
+        height: 250px;
+        position: relative;
+    }
+
+    .thumbnail .thumbnail-footer {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .thumbnail .glyphicon-plus-sign {
+        font-size: 100px;
+        margin-top: 20px;
+    }
+
+    .u-center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+</style>
+
+<div style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+    <div class="card card--new" ng-click="vm.openAddNewScenarioModal()">
+        <span class="glyphicon glyphicon-plus-sign"></span>
+        <h3>Add new scenario</h3>
+    </div>
+    <!-- Card Projects -->
+    <div class="card" ng-repeat="host in vm.hosts">
+        <div class="card-content" ui-sref="dashboard.host({hostId: host.id})">
+            <h1>{{host.host}}</h1>
+            <p>Scenarios: <b>{{host.scenarios.length}}</b></p>
+            <p>Active: <b>{{host.activeScenario.name || 'None'}}</b></p>
+
+            <div ng-if="host.activeScenario">
+                <p>Actions : <b>{{::host.activeScenario.eventsToTrack.join(', ')}}</b></p>
+                <p>Duration: <b>{{host.activeScenario.trackDuration}} days</b></p>
+                <p>Percentage of people: <b>{{host.activeScenario.trackPercentage}}%</b></p>
+            </div>
+        </div>
+
+        <div class="card-action">
+            <a ui-sref="dashboard.host({hostId: host.id})">Go to</a>
+            <a ng-if="host.activeScenario" ng-click="vm.disableHost(host)">Disable</a>
+            <a ng-click="vm.deleteHost(host)">Delete</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        width: 250px;
+        height: 250px;
+        background: white;
+        overflow: hidden;
+        box-sizing: border-box;
+        border-radius: 2px;
+        background-clip: padding-box;
+        position: relative;
+        margin: 10px 10px;
+    }
+
+    .card.card--new .glyphicon-plus-sign, .card.card--new h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .card.card--new .glyphicon-plus-sign {
+        margin-top: 70px;
+        font-size: 40px;
+    }
+
+    .card p, .card h1{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .card h1 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .card span.card-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .card .card-content {
+        padding: 16px;
+        border-radius: 0 0 2px 2px;
+        background-clip: padding-box;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        cursor: pointer;
+    }
+
+    .card .card-content p {
+        margin: 0;
+        color: inherit;
+    }
+
+    .card .card-content span.card-title {
+        line-height: 48px;
+    }
+
+    .card .card-action {
+        border-top: 1px solid rgba(160, 160, 160, 0.2);
+        padding: 16px;
+        position: absolute;
+        bottom: 0;
+        height: 70px;
+        width: 100%;
+    }
+
+    .card .card-action a {
+        color: #ffab40;
+        margin-right: 16px;
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .card .card-action a:hover {
+        color: #ffd8a6;
+        text-decoration: none;
+    }
+</style>

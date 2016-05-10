@@ -1,0 +1,80 @@
+<style>
+    .infoPlacement {
+        margin-top: 20px;
+        overflow: auto;
+        position: relative;
+    }
+
+    .infoPlacement #screenshot {
+        margin: auto;
+        display: block;
+    }
+
+    .infoPlacement heatmap {
+        position: absolute !important;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div class="page-header">
+    <h1>{{vm.host.host}}
+        <small>{{vm.scenario.name}}</small>
+    </h1>
+</div>
+
+<div>
+    <div class="col-sm-6">
+        <div class="row">
+            <label class="col-sm-4">Path</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="mySelect" ng-model="vm.config.path"
+                        ng-options="path for path in vm.paths"></select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4">Start</label>
+            <div class="col-sm-8">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd"
+                           ng-model="vm.config.startDate" is-open="dateFilterStart.opened" close-text="Close"
+                           min-date="vm.scenario.startDate" max-date="vm.config.endDate"/>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="dateFilterStart.opened = true;">
+                                    <i class="glyphicon glyphicon-calendar glyphicon-nonescaped"></i></button>
+                            </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <label class="col-sm-4">Screen width</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="vm.config.screenWidth"
+                        ng-options="screenWidth as screenWidth.value for screenWidth in vm.screenWidths"></select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4">End</label>
+            <div class="col-sm-8">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd"
+                           ng-model="vm.config.endDate" is-open="dateFilterEnd.opened" close-text="Close"
+                           min-date="vm.config.startDate" max-date="vm.scenario.endDate"/>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="dateFilterEnd.opened = true;"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-default" ng-click="vm.search()" ng-disabled="false">Search</button>
+</div>
+
+<div class="infoPlacement" style="height: 2000px;" ng-style="{'width': vm.config.screenWidth.value + 'px'}">
+    <img id="screenshot" ng-src="data:image/png;base64,{{vm.screenshotSrc}}"/>
+    <heatmap id="heatmap" data="vm.heatmapData" config="vm.heatmapConfig" ng-click="vm.updateData()" ng-if="vm.loadComplete"></heatmap>
+</div>

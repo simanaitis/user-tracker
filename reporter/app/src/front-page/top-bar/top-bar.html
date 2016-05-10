@@ -1,0 +1,11 @@
+<header class="header dark-bg">
+    <a ui-serf="" class="logo">UX <span class="lite">Trackers</span></a>
+
+    <div class="top-nav notification-row">
+        <a ui-sref="about">ABOUT</a>
+        <div ng-controller="SignController as vm" style="display: inline-block;">
+            <a ng-click="vm.signIn()" style="cursor: pointer; color: #5cb85c; margin-left: 10px;">SIGN IN</a>
+            <a ng-click="vm.signUp()" style="cursor: pointer; color: #5bc0de; margin-left: 10px;">SIGN UP</a>
+        </div>
+    </div>
+</header>

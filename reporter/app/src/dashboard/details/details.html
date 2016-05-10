@@ -1,0 +1,15 @@
+<div class="panel-group">
+    <div class="panel panel-default" ng-repeat="host in vm.hosts">
+        <div class="panel-heading">{{host.host}}<span class="pull-right">{{host.activeScenario.name}}</span></div>
+        <div class="panel-body">
+            <p ng-show="!host.activeScenario">Not active</p>
+            <div class="progress progress-striped" ng-show="host.activeScenario" style="text-align: center;">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30"
+                     aria-valuemin="0" aria-valuemax="100" ng-style="{'width': host.progress + '%'}">
+                    <span class="sr-only">{{host.progress}}% Complete</span>
+                </div>
+                <span class="percent" ng-show="host.activeScenario">{{host.progress}}%</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "EventArray",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "events": {
+      "type": [
+        "Event"
+      ],
+      "id": false,
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

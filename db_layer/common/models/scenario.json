@@ -1,0 +1,59 @@
+{
+  "name": "Scenario",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "boolean",
+      "required": true,
+      "comments": "Active/Inactive"
+    },
+    "trackDuration": {
+      "type": "number",
+      "required": true
+    },
+    "trackPercentage": {
+      "type": "number",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "domainId": {
+      "type": "string",
+      "required": true
+    },
+    "amountToTrack": {
+      "type": "number",
+      "required": true
+    },
+    "eventsToTrack": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "visits": {
+      "type": "referencesMany",
+      "model": "Visit",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
