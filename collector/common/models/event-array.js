@@ -5,8 +5,9 @@ module.exports = function(EventArray) {
 
   EventArray.observe('before save', function (ctx, next) {
     var loopbackContext = loopback.getCurrentContext();
+
     var visitId = loopbackContext.get('visitId');
-    console.log('adding events sending request');
+
     if(visitId){
       request('http://localhost:3001/api/Domains?filter=' + encodeURIComponent(JSON.stringify({"where": {"host": loopbackContext.get('host')}})))
         .then(function (response) {

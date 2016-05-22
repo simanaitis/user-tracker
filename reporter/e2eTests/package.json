@@ -1,0 +1,19 @@
+{
+  "name": "User tracking UIE2E",
+  "version": "0.0.1",
+  "description": "User tracking UIE2E",
+  "author": "Povilas Simanaitis",
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-protractor": "1.0.0",
+    "gulp-protractor-qa": "0.2.0",
+    "gulp-sequence": "^0.3.2",
+    "jasmine-reporters": "^2.0.7",
+    "request": "^2.67.0",
+    "yargs": "^3.24.0"
+  },
+  "engines": {
+    "node": "^0.10.0"
+  }
+}
