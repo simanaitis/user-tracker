@@ -12,16 +12,24 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
 
     var infoPlacement = angular.element('#infoPlacement');
 
-    vm.onChange = function() {
+    var previuosEvent
+    vm.onChange = function () {
+        var isHeightDiferent = 0;
         vm.paths.length = 0;
         if (events.length) {
-            events.forEach(function (event) {
+            events.forEach(function (event, index, array) {
                 if (event.time >= vm.config.startDate && event.time <= vm.config.endDate) {
                     if (vm.paths.indexOf(event.path) === -1 && isScreenWidthCorrect(event)) {
                         vm.paths.push(event.path);
                     }
                 }
+                if (!isHeightDiferent && array.length != index && array[index+1]) {
+                    isHeightDiferent = ((event.documentHeight - array[index+1].documentHeight) !== 0) ? true + 1 : 0;
+                }
             });
+            if(isHeightDiferent){
+                alertify.error('You are viewing dynamic page, be aware that heatmap points might be out of synch');
+            }
             if (!vm.config.path) vm.config.path = vm.paths[0];
         } else {
             vm.config.path = null;
