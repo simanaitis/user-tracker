@@ -547,9 +547,6 @@ a.logo span {
     margin-top: 15px;
     margin-left: 65px;
 }
-#task_notificatoin_bar, #mail_notificatoin_bar, #alert_notificatoin_bar{
-    margin-top: 7px;
-}
 
 ul.top-menu > li > a {
     color: #fed189;
@@ -4193,7 +4190,7 @@ table.sliders tr td {
     box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
 }
 .has-switch > div.switch-on {
-    left: 0%;
+    left: 0;
 }
 .has-switch > div.switch-on label {
     background-color: #34aadc;

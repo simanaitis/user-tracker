@@ -53,8 +53,7 @@
                 <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" close-text="Close"
                        ng-model="vm.scenario.startDate" ng-required="true" is-open="dateFilterStartOpened"/>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="dateFilterStartOpened = true;">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                    <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterStartOpened = true;">
                     </button>
                 </span>
             </div>
@@ -66,8 +65,7 @@
                 <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" close-text="Close"
                        ng-model="vm.scenario.endDate" ng-required="true" is-open="dateFilterEndOpened"/>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="dateFilterEndOpened = true;">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                    <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterEndOpened = true;">
                     </button>
                 </span>
             </div>

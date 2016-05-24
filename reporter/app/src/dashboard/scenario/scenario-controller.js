@@ -47,7 +47,10 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
     });
 
     vm.search = function(skipGetEvents) {
-        if (!skipGetEvents) getEvents(generateScreenshot);
+        if (!skipGetEvents) {
+            vm.generatingScreenshot = true;
+            getEvents(generateScreenshot);
+        }
         vm.loadComplete = false;
     };
 
@@ -140,6 +143,7 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
             infoPlacement[0].style.height = image.height + 'px';
 
             if (events.length) {
+                debugger;
                 vm.heatmapData = prepareHeatMapData(image.width, image.height);
             } else {
                 //    ERROR NOTIFICATION
@@ -153,7 +157,6 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
                 });
             });
         };
-        debugger;
 
         image.src = 'data:image/png;base64,' + base64;
     }

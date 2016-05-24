@@ -42,8 +42,7 @@
                            is-open="dateFilterStart.opened" close-text="Close"
                            min-date="vm.scenario.startDate" max-date="vm.config.endDate"/>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="dateFilterStart.opened = true;">
-                                    <i class="glyphicon glyphicon-calendar glyphicon-nonescaped"></i></button>
+                                <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterStart.opened = true;">
                             </span>
                 </p>
             </div>
@@ -69,8 +68,7 @@
                            is-open="dateFilterEnd.opened" close-text="Close"
                            min-date="vm.config.startDate" max-date="vm.scenario.endDate"/>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="dateFilterEnd.opened = true;"><i
-                                        class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterEnd.opened = true;">
                             </span>
                 </p>
             </div>
@@ -81,8 +79,9 @@
 </div>
 
 <span class="glyphicon glyphicon-repeat spin " style="font-size: 60px; left: 50%; margin-top: 50px;" ng-show="vm.generatingScreenshot"></span>
-<div id="infoPlacement" class="infoPlacement" style="position: relative;" ng-show="!vm.generatingScreenshot">
-    <img id="screenshot" ng-src="data:image/png;base64,{{vm.screenshotSrc}}"/>
-
-    <heatmap id="heatmap" data="vm.heatmapData" config="vm.heatmapConfig" ng-if="vm.enableHeatmap"></heatmap>
+<div class="infoPlacement" ng-show="!vm.generatingScreenshot">
+    <div id="infoPlacement" style="position: relative;">
+        <img id="screenshot" ng-src="data:image/png;base64,{{vm.screenshotSrc}}"/>
+        <heatmap id="heatmap" data="vm.heatmapData" config="vm.heatmapConfig" ng-if="vm.enableHeatmap"></heatmap>
+    </div>
 </div>

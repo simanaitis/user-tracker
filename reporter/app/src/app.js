@@ -38,6 +38,10 @@ angular
                 templateUrl: 'app/src/dashboard/hosts/hosts.html',
                 controller: 'HostsController as vm'
             })
+            .state('dashboard.documentation', {
+                url: '/hosts',
+                template: '<h1>Documentation is currently progress</h1><h2>please try again later.</h2>'
+            })
             .state('dashboard.host', {
                 url: '/hosts/:hostId',
                 templateUrl: 'app/src/dashboard/hosts/host/host.html',
