@@ -9,6 +9,22 @@
     Add new scenario <span class="glyphicon glyphicon-plus-sign"></span>
 </button>
 
+<div class="pull-right">
+    <span>Inject one of the following:</span>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">
+            <a target="_self" style="color: white;" href="scripts/userTracking.js" download="userTracking.js">Original</a>
+        </button>
+        <button type="button" class="btn btn-primary">
+            <a target="_self" style="color: white;" href="scripts/userTracking.min.js" download="userTracking.js">Minified</a>
+        </button>
+        <button type="button" class="btn btn-primary">
+            <a target="_self" style="color: white;" href="scripts/userTracking.min.polyfill.js" download="userTracking.js">Minified with polyfill</a>
+        </button>
+    </div>
+
+</div>
+
 <uib-accordion is-disabled="true">
     <uib-accordion-group ng-repeat="scenario in vm.scenarios" is-open="true"
                          panel-class="{{scenario.status === 'active' && 'panel-primary'}}">
