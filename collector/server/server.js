@@ -22,8 +22,8 @@ app.use(loopback.token());
 app.use(function setDomain(req, res, next) {
   var loopbackContext = loopback.getCurrentContext();
 
-  if(req.headers && req.headers.host){
-    loopbackContext.set('host', req.headers.host);
+  if(req.headers && req.headers.referer){
+    loopbackContext.set('host', req.headers.origin.slice(req.headers.origin.indexOf('://') + 3));
   }
 
   var userId = req.url.slice(req.url.indexOf('/api/users/')+11, req.url.indexOf('/visits'));
