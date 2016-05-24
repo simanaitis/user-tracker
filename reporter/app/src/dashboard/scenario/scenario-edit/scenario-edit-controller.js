@@ -4,7 +4,6 @@ module.exports = ['Config', function (Config) {
 
     vm.eventsToTrack = Config.EVENTS;
 
-    console.log(vm.createEmpty);
     if (vm.createEmpty) createEmptyScenario();
 
     function createEmptyScenario() {

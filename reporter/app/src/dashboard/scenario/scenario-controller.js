@@ -74,6 +74,7 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
             eventArray = [];
 
         function fixWidthHeight(event) {
+            return event.positionX + 'x' + event.positionY;
             var positionX = event.positionX * imageWidth / event.documentWidth,
                 positionY = event.positionY * imageHeight / event.documentHeight;
             return parseInt(positionX) + 'x' + parseInt(positionY);

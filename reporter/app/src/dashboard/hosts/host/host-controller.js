@@ -25,6 +25,21 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', function ($uibModa
             CoreService.deleteScenario({id:$stateParams.hostId, scenarios: vm.scenarios} ,scenarioId);
         };
 
+        vm.updateScenario = function(scenarioId, scenario) {
+            var indexOfChanged = vm.changed.indexOf(scenario.id);
+            vm.changed.splice(indexOfChanged, 1);
+            CoreService.updateScenario({id: $stateParams.hostId}, scenario, scenario);
+        };
+
+        vm.changed = [];
+        vm.onChange = function(scenario) {
+            vm.changed.push(scenario.id);
+        };
+
+        vm.isChanged = function(scenario) {
+            return vm.changed.indexOf(scenario.id) !== -1;
+        };
+
         vm.series.forEach(function(operatingSystem) {
             var data = [];
             vm.labels.forEach(function(browser) {
