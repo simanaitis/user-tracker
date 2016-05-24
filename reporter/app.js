@@ -13,5 +13,37 @@ app.configure(function() {
 });
 
 
+var webshot = require('webshot'),
+	fs      = require('fs');
+
+app.get('/screenshot', function(req, res) {
+	var file = 'screenshot.jpeg',
+		options = {
+			screenSize: {
+				width: req.param('width')
+			},
+			shotSize: {
+				width: 'all',
+				height: 'all'
+			},
+			defaultWhiteBackground: true,
+			customCSS: 'html, body {background: white!important; }'
+		};
+
+	webshot(req.param('url'), file, options,
+		function(err) {
+			if (err) {
+				res.status(500).send({ error: 'Something failed!' });
+			} else {
+				var bitmap = fs.readFileSync(file);
+
+				res.json({
+					base64: new Buffer(bitmap).toString('base64')
+				});
+			}
+		});
+});
+
+
 app.listen(port);
 console.log("App listening on port " + port);

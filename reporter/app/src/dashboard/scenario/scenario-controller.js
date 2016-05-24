@@ -10,6 +10,28 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
         screenWidth: vm.screenWidths[3]
     };
 
+    var infoPlacement = angular.element('#infoPlacement');
+
+    vm.onChange = function() {
+        vm.paths.length = 0;
+        if (events.length) {
+            events.forEach(function (event) {
+                if (event.time >= vm.config.startDate && event.time <= vm.config.endDate) {
+                    if (vm.paths.indexOf(event.path) === -1 && isScreenWidthCorrect(event)) {
+                        vm.paths.push(event.path);
+                    }
+                }
+            });
+            if (!vm.config.path) vm.config.path = vm.paths[0];
+        } else {
+            vm.config.path = null;
+        }
+    };
+
+    function isScreenWidthCorrect(event) {
+        return vm.config.screenWidth.low <= event.documentWidth && event.documentWidth < vm.config.screenWidth.high;
+    }
+
     CoreService.getHost($stateParams.hostId).then(function(host) {
         vm.host = host;
     });
@@ -20,46 +42,47 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
         vm.config.startDate = scenario.startDate;
         vm.config.endDate = scenario.endDate;
 
-        CoreService.getEvents($stateParams.hostId, {}).then(function(eventsArray) {
-            events = [].concat.apply([], eventsArray
-                .map(function(eventsInfo) { return eventsInfo.events; }))
-                .filter(function(eventInfo) { return eventInfo.type === 'click'; });
-
-            vm.search();
-        });
+        getEvents(vm.onChange);
+        vm.search(true);
     });
 
-    vm.search = function() {
+    vm.search = function(skipGetEvents) {
+        if (!skipGetEvents) getEvents(generateScreenshot);
         vm.loadComplete = false;
-
-        generateScreenshot();
-        if (events.length) {
-            vm.config.path = events[0].path;
-            vm.heatmapData = prepareHeatMapData();
-        } else {
-        //    ERROR NOTIFICATION
-        }
     };
 
-    function prepareHeatMapData() {
+    function getEvents(callback) {
+        CoreService.getEvents($stateParams.hostId, {}).then(function(eventsArray) {
+            events = [].concat.apply([], eventsArray
+                .map(function (eventsInfo) {
+                    return eventsInfo.events;
+                }))
+                .filter(function (eventInfo) {
+                    return eventInfo.type === 'click';
+                });
+
+            if (callback) callback();
+        });
+    }
+
+    function prepareHeatMapData(imageWidth, imageHeight) {
         var map = {},
             max = 0,
             eventArray = [];
 
-        function isScreenWidthCorrect(event) {
-            return vm.config.screenWidth.low <= event.documentWidth < vm.config.screenWidth.high;
+        function fixWidthHeight(event) {
+            var positionX = event.positionX * imageWidth / event.documentWidth,
+                positionY = event.positionY * imageHeight / event.documentHeight;
+            return parseInt(positionX) + 'x' + parseInt(positionY);
         }
 
         events.forEach(function(event) {
-            if (event.time >= vm.config.startDate && event.time <= vm.config.endDate) {
-                if (event.path === vm.config.path && isScreenWidthCorrect(event)) {
-                    var key = event.positionX + 'x' + event.positionY;
+            if (event.time >= vm.config.startDate && event.time <= vm.config.endDate && isScreenWidthCorrect(event)) {
+                if (event.path === vm.config.path) {
+                    var key = fixWidthHeight(event);
 
+                    console.log( event.positionX + 'x' + event.positionY, key);
                     map[key] = map[key] ? map[key] + 1 : 1;
-
-                    if (vm.paths.indexOf(event.path) === -1) {
-                        vm.paths.push(event.path);
-                    }
                 }
             }
         });
@@ -87,9 +110,16 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
     }
 
     function generateScreenshot() {
-        return $http.get('/screenshot?url=' + vm.host.host/* + vm.pathUrl*/ + '&width=' + vm.screenWidth).then(function (resp) {
+        vm.generatingScreenshot = true;
+
+        var url = vm.host.host
+            + (vm.config.path ? vm.config.path : '')
+            + '&width=' + vm.config.screenWidth.high;
+
+        return $http.get('/screenshot?url=' + url).then(function (resp) {
             if (resp.status && resp.data.status !== false) {
                 vm.screenshotSrc = resp.data.base64;
+                getWidthHeight(resp.data.base64);
             } else {
                 return $q.reject('Failed to generate screenshot.');
             }
@@ -100,4 +130,31 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
         blur: .9,
         opacity:.5
     };
+
+    function getWidthHeight(base64) {
+        var image = new Image();
+
+        image.onload = function(){
+            vm.generatingScreenshot = false;
+            infoPlacement[0].style.width = image.width + 'px';
+            infoPlacement[0].style.height = image.height + 'px';
+
+            if (events.length) {
+                vm.heatmapData = prepareHeatMapData(image.width, image.height);
+            } else {
+                //    ERROR NOTIFICATION
+            }
+
+
+            $timeout(function() {
+                vm.enableHeatmap = false;
+                $timeout(function() {
+                    vm.enableHeatmap = true;
+                });
+            });
+        };
+        debugger;
+
+        image.src = 'data:image/png;base64,' + base64;
+    }
 }];
