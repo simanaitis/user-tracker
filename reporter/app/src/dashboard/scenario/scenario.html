@@ -68,14 +68,17 @@
                            is-open="dateFilterEnd.opened" close-text="Close"
                            min-date="vm.config.startDate" max-date="vm.scenario.endDate"/>
                                 <span class="input-group-btn">
-                                <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterEnd.opened = true;">
-                            </span>
+                                    <button type="button" class="calendar" style="background-image: url(img/calendar_2.png);" ng-click="dateFilterEnd.opened = true;"></button>
+                                </span>
                 </p>
             </div>
         </div>
     </div>
 
-    <button class="btn btn-default" ng-click="vm.search()" ng-disabled="false">Search</button>
+    <button class="btn btn-default" ng-click="vm.search()">Search</button>
+    <button class="btn btn-default">
+        <a target="_self" style="color: black" href="" ng-href="vm.getExportEventsUrl()" download="export.json">Export</a>
+    </div>
 </div>
 
 <span class="glyphicon glyphicon-repeat spin " style="font-size: 60px; left: 50%; margin-top: 50px;" ng-show="vm.generatingScreenshot"></span>

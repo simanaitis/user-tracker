@@ -28,12 +28,16 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', function ($uibModa
         vm.updateScenario = function(scenarioId, scenario) {
             var indexOfChanged = vm.changed.indexOf(scenario.id);
             vm.changed.splice(indexOfChanged, 1);
-            CoreService.updateScenario({id: $stateParams.hostId}, scenario, scenario);
+
+            var scenarioData = JSON.parse(JSON.stringify(scenario));
+            CoreService.updateScenario({id: $stateParams.hostId}, scenarioData, scenarioData);
         };
 
         vm.changed = [];
         vm.onChange = function(scenario) {
-            vm.changed.push(scenario.id);
+            if (vm.changed.indexOf(scenario.id) === -1) {
+                vm.changed.push(scenario.id);
+            }
         };
 
         vm.isChanged = function(scenario) {

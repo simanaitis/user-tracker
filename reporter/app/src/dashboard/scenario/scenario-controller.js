@@ -28,7 +28,7 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
                 }
             });
             if(isHeightDiferent){
-                alertify.error('You are viewing dynamic page, be aware that heatmap points might be out of synch');
+                //alertify.error('You are viewing dynamic page, be aware that heatmap points might be out of synch');
             }
             if (!vm.config.path) vm.config.path = vm.paths[0];
         } else {
@@ -60,6 +60,10 @@ module.exports = ['$uibModal', 'CoreService', '$stateParams', '$http', '$q', '$s
             getEvents(generateScreenshot);
         }
         vm.loadComplete = false;
+    };
+
+    vm.getExportEventsUrl = function() {
+        CoreService.getExportEventsUrl($stateParams.hostId);
     };
 
     function getEvents(callback) {

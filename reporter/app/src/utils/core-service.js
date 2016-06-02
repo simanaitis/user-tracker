@@ -107,6 +107,12 @@ module.exports = ['$http', 'UserService', 'Config', function ($http, UserService
         return $http.get(Config.BASE_URL + 'EventArrays' + formQuery() + '&filter=' + escape(JSON.stringify({'where': filterData}))).then(returnData);
     };
 
+    var getExportEventsUrl = function(domainId) {
+        return $http.get(Config.BASE_URL + 'EventArrays' + formQuery()
+            + '&filter=' + escape(JSON.stringify({'where': { 'events.domainId': domainId }}))
+            + '&download=true');
+    };
+
     // TRACKED USERS
     var getTrackedUsers = function(domainId) {
         return $http.get(Config.BASE_URL + 'Domains/' + domainId + '/tracked_user' + formQuery()).then(returnData);
@@ -129,6 +135,7 @@ module.exports = ['$http', 'UserService', 'Config', function ($http, UserService
         getVisit: getVisit,
 
         getEvents: getEvents,
+        getExportEventsUrl: getExportEventsUrl,
 
         getTrackedUsers: getTrackedUsers
     };
