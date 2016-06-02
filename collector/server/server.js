@@ -22,7 +22,7 @@ app.use(loopback.token());
 app.use(function setDomain(req, res, next) {
   var loopbackContext = loopback.getCurrentContext();
 
-  if(req.headers && req.headers.referer){
+  if(req.headers && req.headers.referer && req.headers.origin){
     loopbackContext.set('host', req.headers.origin.slice(req.headers.origin.indexOf('://') + 3));
   }
 
